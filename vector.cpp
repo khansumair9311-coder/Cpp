@@ -1,63 +1,77 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<numeric>
 using namespace std;
 class Vector
 {
 public:
+    int size;
+    int capacity;
+    int *arr;
     Vector()
     {
-        int size = 0;
-        int capacity = 10;
+        size = 0;
+        capacity = 1;
+        arr = new int[1];
+    }
+    void add(int ele)
+    {
+        if (size == capacity)
+        {
+            capacity = capacity * 2;
+
+            int *arr2 = new int[capacity];
+
+            for (int i = 0; i < size; i++)
+            {
+                arr2[i] = arr[i];
+            }
+
+            delete[] arr;
+
+            arr = arr2;
+        }
+        arr[size] = ele;
+        size++;
+    }
+    void print()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+    void remove()
+    {
+        if (size == 0)
+        {
+            cout << "Array Is Empty" << endl;
+        }
+        size--;
     }
 };
 int main()
 {
-    vector<int> v;
-    v.push_back(1);
-    v.push_back(2);
-    v.push_back(3);
-    v.push_back(4);
-    v.push_back(5);
-    v.push_back(6);
-    v.pop_back();
-    // cout << v.size() << endl;
-    // cout << v.capacity() << endl;
-    // for (int i = 0; i < v.size(); i++)
-    // {
-    //     cout << v[i] << " ";
-    // }
-    // cout << endl;
-    // cout << "Value at index 2:- " << v[2] << " or " << v.at(2) << endl;
-    // cout << v.front();
-    // cout << v.back();
-    v.erase(v.begin() + 2);
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << " ";
-    }
-    cout << endl;
-    cout << "After Insert: ";
-    v.insert(v.begin() + 3, 25);
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << " ";
-    }
-    v.clear();
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << " ";
-    }
-    cout << endl;
-    cout << "Is empty: ";
-    if (v.size() == 0)
-    {
-        cout << "Yes";
-    }
-    else
-    {
-        cout << "No";
-    }
+    Vector v;
+    v.add(45);
+    v.print();
+    v.add(21);
+    v.print();
+    v.add(23);
+    v.print();
+    v.add(89);
+    v.print();
+    v.add(76);
+    v.print();
+    v.print();
+    v.remove();
+    v.print();
+    v.remove();
+    v.print();
+    v.remove();
+    v.max_element(v.begin(),v.end());
 
     return 0;
 }
