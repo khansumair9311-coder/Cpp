@@ -1,0 +1,16 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main(){
+int n,sum=1;
+cout<<"Enter N: ";
+cin>>n;
+while (n>0)
+{
+    sum=sum*n%10;
+    n=n/10;
+}
+cout<<sum;
+
+return 0;
+}
